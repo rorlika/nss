@@ -1,0 +1,32 @@
+<section class="home-newsletter">
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+    	<div class="single">
+        <i class="fa fa-paper-plane"></i>
+    		<h2>Subscribe to our Newsletter</h2>
+        <%= form_for @subscriber, url: {action: "create"}, html: {class: "subscribe"} do |f| %>
+          <% if @subscriber.errors.any? %>
+            <% @subscriber.errors.full_messages.each do |message| %>
+              <div class="alert alert-danger" role="alert">
+                <%= message %>
+              </div>
+            <% end %>
+          <% end %>
+          <div id="flash">
+            <% flash.each do |key, value| %>
+                <div class="alert alert-success flash <%= key %>"><%= value %></div>
+            <% end %>
+          </div>
+          <div class="input-group">
+            <%= f.text_field :email, class: 'form-control',placeholder: 'Enter your email' %>
+            <span class="input-group-btn">
+              <%= f.submit "Subscribe", class: 'btn btn-theme' %>
+            </span>
+          </div>
+        <% end %>
+    	</div>
+    </div>
+  </div>
+</div>
+</section>

@@ -1,0 +1,61 @@
+<div class="content-top">
+  <div class="row">
+    <div class="col-md-12">
+      List of Newsletters
+    </div>
+  </div>
+</div>
+<div class="add-newsletter">
+  <%= link_to "New Newsletter", new_newsletter_path ,class: 'btn btn-default' %>
+</div>
+<div id="flash">
+  <% flash.each do |key, value| %>
+      <div class="alert alert-success flash <%= key %>"><%= value %></div>
+  <% end %>
+</div>
+<div class="row">
+  <% @newsletters.each do |newsletter| %>
+    <div class="col-sm-6">
+    <div class="card" style="width: 20rem;">
+      <% if newsletter.delivered_at.present? %>
+        Delivered on <%= newsletter.delivered_at.strftime("%B %d, %Y at %I:%M:%S") %><br />
+      <% end %>
+      <div class="card-block">
+
+        <div class="row">
+          <div class="col-md-12">
+            <div class="row">
+              <div class="col-md-6">Subject</div>
+              <div class="col-md-6"><%= newsletter.subject %></div>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="row">
+              <div class="col-md-6">Body</div>
+              <div class="col-md-6"><%= truncate(newsletter.body, :length => 30) %></div>
+            </div>
+          </div>
+          <%= form_tag("/newsletters/#{newsletter.id}/deliver", method: "post") do %>
+            <div class="col-md-12" style="margin-left: 5%;">
+                <p>Schedule</p>
+                <%= datetime_local_field(:date,:schedule,'class'=> 'datepicker' ) %>
+            </div>
+            </div>
+            <br>
+            <div class="col-md-12">
+              <div class="row">
+                <div class="col-md-6">
+                  <%= link_to "View", newsletter, class: 'btn btn-default' %>
+                </div>
+                <div class="col-md-6">
+                  <%= submit_tag("send", class: 'btn btn-success') %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+      </div>
+    </div>
+  </div>
+  <% end %>
+
+</div>

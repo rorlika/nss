@@ -1,0 +1,22 @@
+// Place all the styles related to the newsletters controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.card {
+  background-color: #5f5858 !important;
+}
+
+.btn {
+    border: 1px solid #fff !important;
+}
+.content-top {
+  background-color: black;
+  padding: 20px;
+  margin-bottom: 10px;
+}
+.add-newsletter {
+  margin-bottom: 20px;
+}
+.card {
+  overflow: hidden;
+  transition: .25s box-shadow;
+}
